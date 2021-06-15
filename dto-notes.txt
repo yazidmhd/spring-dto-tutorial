@@ -1,0 +1,36 @@
+- server collects all the requested data -> stores it in a custom-defined DTO -> sends it back
+- client can get all the desired data in a single API call
+- server is sending only the minimum amount of data across the wire
+- DTOs can be used as both input and output in method class
+- possible usages of DTOs:
+ > for example, as you can see the User entity has a password attribute. because of security reasons, it's probably not the best idea to return it for example in REST GET endpoints. this is why I am going to define two different DTOs: UserPostDto and UserGetDto
+ > UserPostDto is going to be used while passing the data required to persist a new User to the Spring boot application
+
+- dto layer is where you should define your validation logic, especially when used as input or output of your RESTful APIs
+- for example, the UserGetDto will be used to expose the data of a specific user to the client application and does not require a password field
+
+- MapStruct requires you to define at least one mapper
+- MapStruct mapper is an interface or an abstract class annotated with @Mapper
+- the annotation will automatically generate a working implementation of the Java file at build time
+- all readable properties from the source type(e.g. Book) will be mapped into the corresponding property in the target type(e.g. BookDto) in the generated method implementation by default
+
+=========================================================================
+
+source is from the parameter itself
+target is the class entity itself
+
+e.g. naming convention
+EmployeeDTO employeeToEmployeeDTO(employee) -> this is taking an employee entity and mapping it to a EmployeeDTO entity
+
+Employee employeeDtoToEmployee(employeeDto) -> this is taking employee dto entity and mapping it back to a Employee entity
+
+==========================================================================
+
+entity class is mapped to the table
+dto class is mapped to the view layer -> whatever data we are going to represent to the client side(React, Angular) is the dto -> so the fields inside the dto will be represented in the view layer and not the entity class
+
+modelToDto -> productToProductDto -> entity class mapped to Dto class
+
+
+
+
